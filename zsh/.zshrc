@@ -60,4 +60,5 @@ eval "$(atuin init zsh)"
 # fortune | cowsay
 export PATH="$HOME/bin:$PATH"
 
+
 alias dotbackup="~/.dotfiles/backup.sh"
