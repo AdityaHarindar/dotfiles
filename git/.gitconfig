@@ -1,111 +1,29 @@
+# This is Git's per-user configuration file.
 [user]
-    name = AdityaHarindar
-    email = aditya.harindar@gmail.com
-
+# Please adapt and uncomment the following lines:
+	name = AdityaHarindar
+	email = aditya.harindar@gmail.com
 [alias]
-    # Status and info
-    st = status
-    s = status -sb
-    last = log -1 HEAD
-
-    # Commit
-    ci = commit
-    cm = commit -m
-    ca = commit --amend
-    can = commit --amend --no-edit
-
-    # Push/Pull/Fetch
-    ps = push
-    pl = pull
-    ft = fetch
-    fa = fetch --all
-
-    # Branch
-    br = branch
-    bra = branch -a
-    brd = branch -d
-    brD = branch -D
-
-    # Checkout/Switch
-    co = checkout
-    cb = checkout -b
-    sw = switch
-    swc = switch -c
-
-    # Diff
-    d = diff --color=always
-    ds = diff --staged
-    dc = diff --cached
-
-    # Add
-    aa = add --all
-    ap = add -p
-
-    # Log
-    lg = log --oneline --graph -20
-    lga = log --oneline --graph --all -20
-    ll = log --pretty=format:'%C(yellow)%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-
-    # Reset
-    unstage = reset HEAD --
-    undo = reset --soft HEAD~1
-
-    # Stash
-    sl = stash list
-    sp = stash pop
-    ss = stash save
-
-    # Rebase
-    rb = rebase
-    rbi = rebase -i
-    rbc = rebase --continue
-    rba = rebase --abort
-
-    # Clean
-    clean-branches = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs -n 1 git branch -d"
-
-    # Misc
-    aliases = config --get-regexp alias
-    contributors = shortlog --summary --numbered
-
+	st = status
+	ps = push
+	ci = commit
+	pl = pull
+	ft = fetch
+	br = branch
+	co = checkout
+	d = diff --color=always
 [pull]
-    rebase = true
-
-[push]
-    autoSetupRemote = true
-    default = current
-
-[fetch]
-    prune = true
-
-[init]
-    defaultBranch = main
-
+	rebase = true
 [url "git@github.com:"]
-    insteadOf = https://github.com/
-
+	insteadOf = https://github.com/
 [core]
-    pager = delta
-    editor = nvim
-    excludesfile = ~/.gitignore_global
-
+	pager = delta
 [interactive]
-    diffFilter = delta --color-only
-
+	diffFilter = delta --color-only
 [delta]
-    side-by-side = false
-    line-numbers = true
-    syntax-theme = Solarized (dark)
-    navigate = true
-
-[merge]
-    conflictstyle = diff3
-
-[diff]
-    colorMoved = default
-
-[rerere]
-    enabled = true
-
-[help]
-    autocorrect = 10
+	side-by-side = false
+	line-numbers = true
+	syntax-theme = Solarized (dark)
+	navigate = true
+[push]
+	autoSetupRemote = true
