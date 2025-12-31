@@ -19,6 +19,19 @@ plugins=(
   golang
   aws
   gcloud
+
+  zsh-autosuggestions      # Fish-like suggestions (install separately)
+  zsh-syntax-highlighting  # Command highlighting (install separately)
+  fzf                      # Fuzzy finder integration
+  z                        # Smart directory jumping
+  aliases                  # List aliases with `als`
+  jsontools                # pp_json, is_json, urlencode/decode
+  httpie                   # HTTP client completions
+  terraform                # tf completions & aliases
+  gh                       # GitHub CLI completions
+  rust                     # Cargo/rustc completions
+  npm                      # Node completions
+  extract                  # `x` to extract any archive
 )
 
 # Load Oh-My-Zsh
