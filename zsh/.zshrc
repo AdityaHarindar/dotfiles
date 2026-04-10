@@ -19,6 +19,7 @@ plugins=(
   golang
   aws
   gcloud
+  claude
 
   zsh-autosuggestions      # Fish-like suggestions (install separately)
   zsh-syntax-highlighting  # Command highlighting (install separately)
@@ -32,6 +33,8 @@ plugins=(
   rust                     # Cargo/rustc completions
   npm                      # Node completions
   extract                  # `x` to extract any archive
+codex
+gemini
 )
 
 # Load Oh-My-Zsh
