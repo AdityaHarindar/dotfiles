@@ -11,6 +11,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Oh-My-Zsh plugins
 plugins=(
+  aws
   git
   brew
   docker
@@ -65,3 +66,7 @@ export PATH="$HOME/bin:$PATH"
 
 
 alias dotbackup="~/.dotfiles/backup.sh"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/adityaharindar/.local/bin:$PATH"
