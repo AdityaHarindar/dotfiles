@@ -49,7 +49,14 @@ export PATH="$HOME/.claude/local:$PATH"       # Claude CLI
 export PATH="$HOME/go/bin:$PATH"              # Go binaries (GOPATH/bin)
 
 # GVM (Go Version Manager)
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+# Under Claude Code, sourcing the full gvm script spams `_encode`/`_decode`
+# errors: its snapshotter strips gvm's `_`-prefixed helper functions. Source
+# gvm's plain env file instead — same Go toolchain, no shell functions.
+if [[ -n "$CLAUDECODE" ]]; then
+  [[ -r "$HOME/.gvm/environments/default" ]] && source "$HOME/.gvm/environments/default"
+elif [[ -s "$HOME/.gvm/scripts/gvm" ]]; then
+  source "$HOME/.gvm/scripts/gvm"
+fi
 
 # Kubectl diff with delta
 export KUBECTL_EXTERNAL_DIFF="delta --side-by-side"
