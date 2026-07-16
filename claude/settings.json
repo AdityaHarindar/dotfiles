@@ -296,8 +296,8 @@
   "switchModelsOnFlag": true,
   "showTurnDuration": true,
   "terminalProgressBarEnabled": true,
-  "remoteControlAtStartup": false,
   "inputNeededNotifEnabled": false,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "remoteControlAtStartup": true
 }
