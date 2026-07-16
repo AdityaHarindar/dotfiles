@@ -50,6 +50,25 @@ info "Backing up dotfiles..."
 # Git config
 [ -f ~/.gitconfig ] && cp ~/.gitconfig "$DOTFILES_DIR/git/.gitconfig" && success ".gitconfig"
 
+# Claude Code config (statusline, hooks, keybindings, global rules)
+# Excludes anything under ~/.claude that isn't user-authored config (history, sessions, caches, auth).
+if [ -d ~/.claude ]; then
+    mkdir -p "$DOTFILES_DIR/claude/hooks" "$DOTFILES_DIR/claude/rules"
+    [ -f ~/.claude/settings.json ] && cp ~/.claude/settings.json "$DOTFILES_DIR/claude/settings.json" && success "claude/settings.json"
+    [ -f ~/.claude/keybindings.json ] && cp ~/.claude/keybindings.json "$DOTFILES_DIR/claude/keybindings.json" && success "claude/keybindings.json"
+    [ -d ~/.claude/hooks ] && cp ~/.claude/hooks/*.js "$DOTFILES_DIR/claude/hooks/" 2>/dev/null && success "claude/hooks/*.js"
+    [ -d ~/.claude/rules ] && cp ~/.claude/rules/*.md "$DOTFILES_DIR/claude/rules/" 2>/dev/null && success "claude/rules/*.md"
+fi
+
+# Codex CLI config (statusline, hooks, global rules)
+# Excludes config.toml and auth.json - those can carry credential-shaped values.
+if [ -d ~/.codex ]; then
+    mkdir -p "$DOTFILES_DIR/codex/hooks"
+    [ -f ~/.codex/AGENTS.md ] && cp ~/.codex/AGENTS.md "$DOTFILES_DIR/codex/AGENTS.md" && success "codex/AGENTS.md"
+    [ -f ~/.codex/hooks.json ] && cp ~/.codex/hooks.json "$DOTFILES_DIR/codex/hooks.json" && success "codex/hooks.json"
+    [ -d ~/.codex/hooks ] && cp ~/.codex/hooks/*.js "$DOTFILES_DIR/codex/hooks/" 2>/dev/null && success "codex/hooks/*.js"
+fi
+
 # Update Brewfile from current system
 if command -v brew &>/dev/null; then
     info "Updating Brewfile from installed packages..."

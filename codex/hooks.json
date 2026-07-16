@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/Users/adityaharindar/.codex/hooks/gsd-context-monitor.js'"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node '/Users/adityaharindar/.codex/hooks/gsd-check-update.js'"
+          }
+        ]
+      }
+    ]
+  }
+}
