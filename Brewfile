@@ -103,6 +103,8 @@ cask "codex"
 cask "gcloud-cli"
 # Clipboard manager
 cask "maccy"
+# Local speech-to-text, transcription, and meeting recording
+cask "macparakeet"
 # VPN client for secure internet access and private browsing
 cask "nordvpn"
 # Native desktop client for WhatsApp

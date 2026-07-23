@@ -77,13 +77,13 @@ process.stdin.on('end', () => {
 
       // Color based on usable context thresholds
       if (used < 50) {
-        ctx = ` \x1b[32m${bar} ${used}%\x1b[0m`;
+        ctx = `\x1b[32m${bar} ${used}%\x1b[0m`;
       } else if (used < 65) {
-        ctx = ` \x1b[33m${bar} ${used}%\x1b[0m`;
+        ctx = `\x1b[33m${bar} ${used}%\x1b[0m`;
       } else if (used < 80) {
-        ctx = ` \x1b[38;5;208m${bar} ${used}%\x1b[0m`;
+        ctx = `\x1b[38;5;208m${bar} ${used}%\x1b[0m`;
       } else {
-        ctx = ` \x1b[5;31m💀 ${bar} ${used}%\x1b[0m`;
+        ctx = `\x1b[5;31m💀 ${bar} ${used}%\x1b[0m`;
       }
     }
 
@@ -147,16 +147,29 @@ process.stdin.on('end', () => {
     const dirname = path.basename(dir);
     const versionSeg = version ? `${SEP}${DIM}v${version}${RST}` : '';
 
-    // Output
-    if (task) {
-      process.stdout.write(
-        `${gsdUpdate}${DIM}${model}${RST}${effortSeg}${versionSeg}${SEP}\x1b[1m${task}${RST}${SEP}${DIM}${dirname}${RST}${ctx}${cacheInfo}`
-      );
-    } else {
-      process.stdout.write(
-        `${gsdUpdate}${DIM}${model}${RST}${effortSeg}${versionSeg}${SEP}${DIM}${dirname}${RST}${ctx}${cacheInfo}`
-      );
+    // 5h rate limit usage (Pro/Max only; absent until first API response)
+    let fiveHourSeg = '';
+    const fiveHour = data.rate_limits?.five_hour;
+    if (fiveHour?.used_percentage != null) {
+      const pct = Math.max(0, Math.min(100, Math.round(fiveHour.used_percentage)));
+      const filled5h = Math.floor(pct / 10);
+      const bar5h = '█'.repeat(filled5h) + '░'.repeat(10 - filled5h);
+      const col = pct < 50 ? '\x1b[32m' : pct < 65 ? '\x1b[33m' : pct < 80 ? '\x1b[38;5;208m' : '\x1b[31m';
+      let reset = '';
+      if (fiveHour.resets_at) {
+        const minsLeft = Math.max(0, Math.round(fiveHour.resets_at * 1000 - Date.now()) / 60000);
+        reset = ` (${Math.floor(minsLeft / 60)}h${Math.round(minsLeft % 60)}m)`;
+      }
+      fiveHourSeg = `${SEP}${col}5h ${bar5h} ${pct}%${reset}${RST}`;
     }
+
+    // Output
+    const ctxSeg = ctx ? `${SEP}${ctx}` : '';
+    const mainLine = task
+      ? `${gsdUpdate}${DIM}${model}${RST}${effortSeg}${versionSeg}${SEP}\x1b[1m${task}${RST}${SEP}${DIM}${dirname}${RST}${ctxSeg}${cacheInfo}`
+      : `${gsdUpdate}${DIM}${model}${RST}${effortSeg}${versionSeg}${SEP}${DIM}${dirname}${RST}${ctxSeg}${cacheInfo}`;
+
+    process.stdout.write(`${mainLine}${fiveHourSeg}`);
   } catch (e) {
     // Silent fail - don't break statusline on parse errors
   }

@@ -204,7 +204,7 @@
     "ask": [],
     "defaultMode": "auto"
   },
-  "model": "sonnet",
+  "model": "opus[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -242,14 +242,14 @@
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": false,
     "modern-go-guidelines@goland-claude-marketplace": true,
     "caveman@caveman": false,
     "andrej-karpathy-skills@karpathy-skills": true,
     "explanatory-output-style@claude-plugins-official": true,
     "chrome-devtools-mcp@claude-plugins-official": true,
     "ponytail@ponytail": true,
-    "slack@claude-plugins-official": true,
+    "slack@claude-plugins-official": false,
     "codex@openai-codex": true
   },
   "extraKnownMarketplaces": {
@@ -284,8 +284,7 @@
       }
     }
   },
-  "effortLevel": "xhigh",
-  "advisorModel": "fable",
+  "effortLevel": "medium",
   "askUserQuestionTimeout": "never",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
@@ -296,8 +295,8 @@
   "switchModelsOnFlag": true,
   "showTurnDuration": true,
   "terminalProgressBarEnabled": true,
+  "remoteControlAtStartup": true,
   "inputNeededNotifEnabled": false,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "remoteControlAtStartup": true
+  "skipAutoPermissionPrompt": true
 }

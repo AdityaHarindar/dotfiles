@@ -21,6 +21,7 @@ plugins=(
   aws
   gcloud
   claude
+  argocd
 
   zsh-autosuggestions      # Fish-like suggestions (install separately)
   zsh-syntax-highlighting  # Command highlighting (install separately)
